@@ -1,0 +1,63 @@
+From 6dd7b377baa3f520e9dc03d8db639a0c09a9107b Mon Sep 17 00:00:00 2001
+From: Auto Configured <auto.configured>
+Date: Sun, 11 May 2014 13:49:15 -0700
+Subject: [PATCH] Added extra i2c busses
+
+---
+ arch/arm/boot/dts/am335x-bone-common.dtsi | 33 +++++++++++++++++++++++++++++++
+ 1 file changed, 33 insertions(+)
+
+diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
+index e3f27ec..7999b23 100644
+--- a/arch/arm/boot/dts/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/am335x-bone-common.dtsi
+@@ -84,6 +84,22 @@
+ 		>;
+ 	};
+ 
++	i2c1_pins: pinmux_i2c1_pins {
++		pinctrl-single,pins = <
++			0x158 (PIN_INPUT_PULLUP | MUX_MODE2)	
++			0x15c (PIN_INPUT_PULLUP | MUX_MODE2)	
++		>;
++	};
++
++
++	i2c2_pins: pinmux_i2c2_pins {
++		pinctrl-single,pins = <
++			0x178 (PIN_INPUT_PULLUP | MUX_MODE3)	
++			0x17c (PIN_INPUT_PULLUP | MUX_MODE3)	
++		>;
++	};
++
++
+ 	uart0_pins: pinmux_uart0_pins {
+ 		pinctrl-single,pins = <
+ 			0x170 (PIN_INPUT_PULLUP | MUX_MODE0)	/* uart0_rxd.uart0_rxd */
+@@ -222,6 +238,23 @@
+ 
+ };
+ 
++&i2c1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c1_pins>;
++
++	status = "okay";
++	clock-frequency = <400000>;
++
++};
++
++&i2c2 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&i2c2_pins>;
++
++	status = "okay";
++	clock-frequency = <400000>;
++};
++
+ /include/ "tps65217.dtsi"
+ 
+ &tps {
+-- 
+1.8.3.2
+
