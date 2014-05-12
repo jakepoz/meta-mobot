@@ -3,7 +3,7 @@ hardware."
 
 IMAGE_FEATURES += "splash"
 
-IMAGE_INSTALL = "packagegroup-base packagegroup-core-ssh-dropbear packagegroup-core-buildessential example i2c-tools"
+IMAGE_INSTALL = "packagegroup-base packagegroup-core-ssh-openssh packagegroup-core-buildessential packagegroup-core-tools-debug example i2c-tools"
 
 LICENSE = "JAKE"
 

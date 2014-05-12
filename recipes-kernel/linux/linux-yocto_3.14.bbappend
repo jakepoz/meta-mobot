@@ -9,6 +9,8 @@ COMPATIBLE_MACHINE_mobot = "beaglebone"
 SRC_URI += "file://mobot-user-config.cfg \
             file://mobot-user-patches.scc \
             file://mobot-user-features.scc \
+            file://leds.cfg \
+            file://pwm.cfg \
            "
 
 # uncomment and replace these SRCREVs with the real commit ids once you've had

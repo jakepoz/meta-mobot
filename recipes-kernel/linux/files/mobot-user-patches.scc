@@ -1,1 +1,3 @@
 patch 0001-Added-extra-i2c-busses.patch
+patch 0002-Adding-PWM-output-on-EHRPWM1-on-Pin-14.patch
+
