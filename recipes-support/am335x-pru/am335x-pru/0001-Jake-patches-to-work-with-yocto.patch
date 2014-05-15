@@ -1,0 +1,52 @@
+From 0f0feb3552d58c7667b467edbc6fa0edcf887674 Mon Sep 17 00:00:00 2001
+From: Jake <jakepoz@gmail.com>
+Date: Thu, 15 May 2014 11:42:48 -0700
+Subject: [PATCH] Patching to work with yocto
+
+---
+ Makefile                             | 4 ++--
+ pru_sw/app_loader/interface/Makefile | 2 +-
+ pru_sw/utils/pasm_source/linuxbuild  | 2 +-
+ 3 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 75ac3d2..146554c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -7,9 +7,9 @@ PREFIX?=/usr/local
+ 
+ all:
+ 	cd pru_sw/utils/pasm_source && ./linuxbuild
+-	cd pru_sw/app_loader/interface && CROSS_COMPILE=$(CROSS_COMPILE) make
++	cd pru_sw/app_loader/interface &&  make
+ 
+ install:
+ 	install -m 0755 -d $(DESTDIR)$(PREFIX)/bin
+ 	install -m 0755 pru_sw/utils/pasm $(DESTDIR)$(PREFIX)/bin
+-	cd pru_sw/app_loader/interface && CROSS_COMPILE=$(CROSS_COMPILE) make install
++	cd pru_sw/app_loader/interface && make install
+diff --git a/pru_sw/app_loader/interface/Makefile b/pru_sw/app_loader/interface/Makefile
+index c9579ff..dac33b3 100644
+--- a/pru_sw/app_loader/interface/Makefile
++++ b/pru_sw/app_loader/interface/Makefile
+@@ -1,6 +1,6 @@
+ ROOTDIR = ..
+ TARGET = libprussdrv
+-CROSS_COMPILE?=arm-arago-linux-gnueabi-
++CROSS_COMPILE?=arm-poky-linux-gnueabi-
+ PREFIX?=/usr/local
+ 
+ CC = $(CROSS_COMPILE)gcc
+diff --git a/pru_sw/utils/pasm_source/linuxbuild b/pru_sw/utils/pasm_source/linuxbuild
+index 6c8bd3e..0778bbf 100755
+--- a/pru_sw/utils/pasm_source/linuxbuild
++++ b/pru_sw/utils/pasm_source/linuxbuild
+@@ -1,4 +1,4 @@
+ #!/bin/sh
+-gcc -Wall -D_UNIX_ pasm.c pasmpp.c pasmexp.c pasmop.c pasmdot.c pasmstruct.c pasmmacro.c path_utils.c -o ../pasm
++$CC -Wall -D_UNIX_ pasm.c pasmpp.c pasmexp.c pasmop.c pasmdot.c pasmstruct.c pasmmacro.c path_utils.c -o ../pasm
+ 
+ 
+-- 
+1.8.3.2
+
