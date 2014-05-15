@@ -1,0 +1,57 @@
+From 2521350174c2b1be46f8dce97285b844537b332b Mon Sep 17 00:00:00 2001
+From: Jake <jakepoz@gmail.com>
+Date: Thu, 15 May 2014 10:29:52 -0700
+Subject: [PATCH 3/3] Enabled second pwm
+
+---
+ arch/arm/boot/dts/am335x-bone-common.dtsi | 22 +++++++++++++++++++++-
+ 1 file changed, 21 insertions(+), 1 deletion(-)
+
+diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
+index dc78fbf..50a08dc 100644
+--- a/arch/arm/boot/dts/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/am335x-bone-common.dtsi
+@@ -99,12 +99,17 @@
+ 		>;
+ 	};
+ 
+-	pwm1_pins: pinmux_pwm1_pins {
++	pwm0_pins: pinmux_pwm0_pins {
+ 		pinctrl-single,pins = <
+ 			0x048 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)
+ 		>;
+ 	};
+ 
++	pwm1_pins: pinmux_pwm1_pins {
++		pinctrl-single,pins = <
++			0x190 (PIN_OUTPUT_PULLDOWN | MUX_MODE1)
++		>;
++	};
+ 
+ 	uart0_pins: pinmux_uart0_pins {
+ 		pinctrl-single,pins = <
+@@ -261,6 +266,21 @@
+ 	clock-frequency = <400000>;
+ };
+ 
++
++&epwmss0 {
++	status = "okay";
++};
++
++&ecap0 {
++	status = "okay";
++};
++
++&ehrpwm0 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm0_pins>;
++	status = "okay";
++};
++
+ &epwmss1 {
+ 	status = "okay";
+ };
+-- 
+1.8.3.2
+

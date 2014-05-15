@@ -1,0 +1,50 @@
+From a5d2f5d49697fde8034ef6b365bfe5f930be99b8 Mon Sep 17 00:00:00 2001
+From: Auto Configured <auto.configured>
+Date: Sun, 11 May 2014 20:04:43 -0700
+Subject: [PATCH 2/2] Adding PWM output on EHRPWM1 on Pin 14
+
+---
+ arch/arm/boot/dts/am335x-bone-common.dtsi | 20 ++++++++++++++++++++
+ 1 file changed, 20 insertions(+)
+
+diff --git a/arch/arm/boot/dts/am335x-bone-common.dtsi b/arch/arm/boot/dts/am335x-bone-common.dtsi
+index 7999b23..dc78fbf 100644
+--- a/arch/arm/boot/dts/am335x-bone-common.dtsi
++++ b/arch/arm/boot/dts/am335x-bone-common.dtsi
+@@ -99,6 +99,12 @@
+ 		>;
+ 	};
+ 
++	pwm1_pins: pinmux_pwm1_pins {
++		pinctrl-single,pins = <
++			0x048 (PIN_OUTPUT_PULLDOWN | MUX_MODE6)
++		>;
++	};
++
+ 
+ 	uart0_pins: pinmux_uart0_pins {
+ 		pinctrl-single,pins = <
+@@ -255,6 +261,20 @@
+ 	clock-frequency = <400000>;
+ };
+ 
++&epwmss1 {
++	status = "okay";
++};
++
++&ecap1 {
++	status = "okay";
++};
++
++&ehrpwm1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pwm1_pins>;
++	status = "okay";
++};
++
+ /include/ "tps65217.dtsi"
+ 
+ &tps {
+-- 
+1.8.3.2
+

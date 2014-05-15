@@ -11,6 +11,7 @@ SRC_URI += "file://mobot-user-config.cfg \
             file://mobot-user-features.scc \
             file://leds.cfg \
             file://pwm.cfg \
+            file://pruss.cfg \
            "
 
 # uncomment and replace these SRCREVs with the real commit ids once you've had
