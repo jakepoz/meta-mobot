@@ -1,5 +1,13 @@
 patch 0001-Added-extra-i2c-busses.patch
 patch 0002-Adding-PWM-output-on-EHRPWM1-on-Pin-14.patch
 patch 0003-Enabled-second-pwm.patch
+patch 0004-PRU-All.patch
+patch 0005-Pruss-clock-domain-fixes.patch
+
+#patch pru/0001-uio-uio_pruss-port-to-AM33xx.patch
+#patch pru/0002-ARM-omap-add-DT-support-for-deasserting-hardware-res.patch
+#patch pru/0003-ARM-dts-AM33xx-PRUSS-support.patch
+#patch pru/0004-uio_pruss-add-dt-support-replicape-00A1.patch
+#patch pru/0005-pruss-Make-sure-it-works-when-no-child-nodes-are-pre.patch
 
 

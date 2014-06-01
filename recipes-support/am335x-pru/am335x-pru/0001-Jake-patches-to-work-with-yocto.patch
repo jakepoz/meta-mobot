@@ -1,13 +1,13 @@
-From 0f0feb3552d58c7667b467edbc6fa0edcf887674 Mon Sep 17 00:00:00 2001
+From 6e4ed4b94d48b3bc02d493ad640c8f01505bf023 Mon Sep 17 00:00:00 2001
 From: Jake <jakepoz@gmail.com>
-Date: Thu, 15 May 2014 11:42:48 -0700
-Subject: [PATCH] Patching to work with yocto
+Date: Sat, 17 May 2014 09:00:06 -0700
+Subject: [PATCH] Getting pru package to work in yocto
 
 ---
  Makefile                             | 4 ++--
- pru_sw/app_loader/interface/Makefile | 2 +-
+ pru_sw/app_loader/interface/Makefile | 4 ++--
  pru_sw/utils/pasm_source/linuxbuild  | 2 +-
- 3 files changed, 4 insertions(+), 4 deletions(-)
+ 3 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/Makefile b/Makefile
 index 75ac3d2..146554c 100644
@@ -26,7 +26,7 @@ index 75ac3d2..146554c 100644
 -	cd pru_sw/app_loader/interface && CROSS_COMPILE=$(CROSS_COMPILE) make install
 +	cd pru_sw/app_loader/interface && make install
 diff --git a/pru_sw/app_loader/interface/Makefile b/pru_sw/app_loader/interface/Makefile
-index c9579ff..dac33b3 100644
+index c9579ff..a4e8dde 100644
 --- a/pru_sw/app_loader/interface/Makefile
 +++ b/pru_sw/app_loader/interface/Makefile
 @@ -1,6 +1,6 @@
@@ -37,6 +37,15 @@ index c9579ff..dac33b3 100644
  PREFIX?=/usr/local
  
  CC = $(CROSS_COMPILE)gcc
+@@ -42,7 +42,7 @@ install: release
+ 	install -m 0755 -d $(DESTDIR)$(PREFIX)/lib
+ 	install -m 0755 -d $(DESTDIR)$(PREFIX)/include
+ 	install -m 0644 $(LIBDIR)/* $(DESTDIR)$(PREFIX)/lib
+-	install -m 0644 $(PUBLIC_HDRS) $(DESTDIR)$(PREFIX)/include
++	install -m 0644 $(PUBLIC_HDRS) $(DESTDIR)$(PREFIX)/include/pruss
+ 
+ release:	$(RELTARGET)
+ 
 diff --git a/pru_sw/utils/pasm_source/linuxbuild b/pru_sw/utils/pasm_source/linuxbuild
 index 6c8bd3e..0778bbf 100755
 --- a/pru_sw/utils/pasm_source/linuxbuild

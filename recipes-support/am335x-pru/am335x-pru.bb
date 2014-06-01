@@ -13,9 +13,16 @@ SRCREV = "26799092b8f0378f75db728b589566615572969c"
 S = "${WORKDIR}/git"
 
 FILES_${PN} = "${bindir}/*"
-FILES_libprussdrv = "${libdir}/libprussdrv.so.*"
+
+FILES_${PN} += "${libdir}/libprussdrv.a"
+FILES_${PN} += "${libdir}/libprussdrv.so"
+FILES_${PN} += "${libdir}/libprussdrvd.a"
+FILES_${PN} += "${libdir}/libprussdrvd.so"
+
+FILES_${PN} += "${includedir}/pruss/*"
 
 do_install () {
-     oe_runmake install PREFIX=/usr DESTDIR=${D} SBINDIR=${sbindir} MANDIR=${mandir} INCLUDEDIR=${includedir}
+     mkdir -p ${D}${includedir}/pruss
+     oe_runmake install PREFIX=/usr DESTDIR=${D} SBINDIR=${sbindir} MANDIR=${mandir} INCLUDEDIR=${includedir}/pruss
 }
 
